@@ -4,7 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var homeroute = require('./routes/home');
+var adminroute = require('./routes/admin');
 var app = express();
+var authRoute = require('./routes/authRo');
 
 // view engine setup
 app.set('view engine', 'ejs');
@@ -19,16 +21,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Home route
 app.use('/', homeroute);
+app.use('/api/auth', authRoute);
 
-// Login route
-app.get('/login', (req, res) => {
-  res.render('login');
-});
-
-// Admin route
-app.get('/admin', (req, res) => {
-  res.render('admin');
-});
+app.use('/admin',adminroute);
 
 // 404 middleware
 app.use((req, res, next) => {

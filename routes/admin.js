@@ -6,3 +6,5 @@ var router = express.Router();
 router.get('/admin', (req, res) => {
   res.render('admin'); // Render home.ejs
 });
+module.exports = router;
+  
